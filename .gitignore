@@ -1,2 +1,3 @@
 venv
 TradInstant.sqlite
+__pycache__
