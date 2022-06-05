@@ -1,5 +1,6 @@
 import config
 import tweepy
+import re
 
 def LoginOnTwitter():
 	return tweepy.Client(consumer_key=config.API_KEY,
@@ -10,13 +11,9 @@ def LoginOnTwitter():
 ## Requetes faites a Twitter
 
 def SearchRecentMentions(ClientTweepy):
-	TweetList = ClientTweepy.search_recent_tweets(query="is:quote @elon_musk_fr",
+	TweetList = ClientTweepy.search_recent_tweets(query="(is:quote OR is:reply) @elon_musk_fr",
 												  max_results=10,
+												  expansions = ["referenced_tweets.id"],
 												  user_auth=1)
-	print(TweetList)
+	#print(TweetList)
 	return TweetList
-
-def GetQuotedTweet(Client, TweetId):
-	QuoteTweet = Client.get_quote_tweets(TweetId)
-	print(f"Quote Tweet récupéré : {QuoteTweet}")
-	return QuoteTweet
