@@ -1,11 +1,17 @@
 import twitterengine
+import translateDeeplAPI
 
 if __name__ == "__main__":
 	print("⭐ Lancement de TradInstant ⭐")
 	print("Authentification de l'utilisateur")
 	Client = twitterengine.LoginOnTwitter()
 	MentionsList = twitterengine.SearchRecentMentions(Client)
-	# Recupère le quoted tweet du dernier tweet de la liste
-	print(MentionsList)
-	print()
-	print(MentionsList.includes['tweets'][0])
+	
+	NewLastTweetId = MentionsList.data[0].id
+	
+	LastTweetId = 0
+
+	# Si on trouve un nouveau tweet non traité
+	if NewLastTweetId != LastTweetId:
+		TextToTranslate = MentionsList.includes['tweets'][0].text
+		translateDeeplAPI.Translate(TextToTranslate)
