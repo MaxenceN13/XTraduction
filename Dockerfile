@@ -1,5 +1,7 @@
 FROM python:3.10-slim
 
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1
+
 WORKDIR /app
 
 RUN apt-get update && apt-get -y upgrade
