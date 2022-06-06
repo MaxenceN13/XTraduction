@@ -32,7 +32,7 @@ def startListeningNewTweetWithSpecificRules():
 	# Recupère un objet TweetPrinterV2
 	printer = TweetPrinterV2(config.BEARER_TOKEN)
 	delAllRules(printer)
-	rule = tweepy.StreamRule(value="(is:quote OR is:reply) @elon_musk_fr -from:1533204921868238848")
+	rule = tweepy.StreamRule(value=f"(is:quote OR is:reply) {config.BOT_TWITTER_ACCOUNT_NAME} -from:{config.BOT_TWITTER_ACCOUNT_ID}")
 	printer.add_rules(rule)
 	printer.filter(expansions=["referenced_tweets.id"])
 
