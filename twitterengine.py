@@ -27,20 +27,20 @@ def getClient():
 
 def getStreamingClient():
 	printer = TweetPrinterV2(config.BEARER_TOKEN)
-	rule = tweepy.StreamRule(value="(is:quote OR is:reply) @elon_musk_fr")
+	delAllRules(printer)
+	rule = tweepy.StreamRule(value="(is:quote OR is:reply) @elon_musk_fr -from:1533204921868238848")
 	printer.add_rules(rule)
+	print(printer.get_rules())
 	printer.filter(expansions=["referenced_tweets.id"])
-
-
-def SearchRecentMentions(ClientTweepy):
-	TweetList = ClientTweepy.search_recent_tweets(query="(is:quote OR is:reply) @elon_musk_fr",
-												  max_results=10,
-												  expansions=["referenced_tweets.id"],
-												  user_auth=1)
-	return TweetList
 
 
 def AnswerToTweet(Client, TweetText, IdSourceTweet):
 	Client.create_tweet(text=TweetText,
 						in_reply_to_tweet_id=IdSourceTweet,
 						user_auth=1)
+
+def delAllRules(streamingClient):
+	rules = streamingClient.get_rules().data
+	if rules != None:
+		for rule in rules:
+			streamingClient.delete_rules(rule.id)
