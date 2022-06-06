@@ -4,9 +4,13 @@ import re
 
 class TweetPrinterV2(tweepy.StreamingClient):
 	
-	def on_tweet(self, tweet):
-		print(f"{tweet.id} {tweet.created_at} ({tweet.author_id}): {tweet.text}")
-		print("-"*50)
+	def on_response(self, response):
+		initialTweet = response.data
+		tweetToTranslate = response.includes['tweets'][0]
+		print(initialTweet.text)
+		print(tweetToTranslate.text)
+		# print(f"{tweet.id} {tweet.created_at} ({tweet.author_id}): {tweet.text}")
+		# print("-"*50)
  
 
 
@@ -20,9 +24,9 @@ def LoginOnTwitter():
 
 def getStreamingClient():
 	printer = TweetPrinterV2(config.BEARER_TOKEN)
-	rule =	tweepy.StreamRule(value="(is:quote OR is:reply) @elon_musk_fr")
+	rule = tweepy.StreamRule(value="(is:quote OR is:reply) @elon_musk_fr")
 	printer.add_rules(rule)
-	printer.filter()
+	printer.filter(expansions=["referenced_tweets.id"])
 
 def SearchRecentMentions(ClientTweepy):
 	TweetList = ClientTweepy.search_recent_tweets(query="(is:quote OR is:reply) @elon_musk_fr",

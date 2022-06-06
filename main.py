@@ -19,27 +19,3 @@ if __name__ == "__main__":
     
     Client = twitterengine.LoginOnTwitter()
     twitterengine.getStreamingClient()
-
-    # streamingClient = twitterengine.getStreamingClient()
-
-    # print(streamingClient.get_rules())
-
-    # data = None
-    # streamingClient.on_tweet(data)
-    #print(data)
-
-
-    # while 1:
-    #     data = None
-    #     streamingClient.on_data(data)
-    #     MentionsList = twitterengine.SearchRecentMentions(Client)
-
-    #     NewLastTweetId = MentionsList.data[0].id
-
-    #     LastTweetId = 0
-
-    #     # Si on trouve un nouveau tweet non traité
-    #     if NewLastTweetId != LastTweetId:
-    #         TweetToTranslate = MentionsList.includes['tweets'][0].text
-    #         TweetTranslated = translateDeeplAPI.Translate(TweetToTranslate)
-    #         twitterengine.AnswerToTweet(Client, TweetTranslated, NewLastTweetId)
