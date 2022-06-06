@@ -4,7 +4,7 @@ import translateDeeplAPI
 if __name__ == "__main__":
     print("⭐ Lancement de TradInstant ⭐")
     print("Authentification de l'utilisateur")
-    Client = twitterengine.LoginOnTwitter()
+    """Client = twitterengine.LoginOnTwitter()
     MentionsList = twitterengine.SearchRecentMentions(Client)
 
     NewLastTweetId = MentionsList.data[0].id
@@ -15,4 +15,31 @@ if __name__ == "__main__":
     if NewLastTweetId != LastTweetId:
         TweetToTranslate = MentionsList.includes['tweets'][0].text
         TweetTranslated = translateDeeplAPI.Translate(TweetToTranslate)
-        twitterengine.AnswerToTweet(Client, TweetTranslated, NewLastTweetId)
+        twitterengine.AnswerToTweet(Client, TweetTranslated, NewLastTweetId)"""
+    
+    Client = twitterengine.LoginOnTwitter()
+    twitterengine.getStreamingClient()
+
+    # streamingClient = twitterengine.getStreamingClient()
+
+    # print(streamingClient.get_rules())
+
+    # data = None
+    # streamingClient.on_tweet(data)
+    #print(data)
+
+
+    # while 1:
+    #     data = None
+    #     streamingClient.on_data(data)
+    #     MentionsList = twitterengine.SearchRecentMentions(Client)
+
+    #     NewLastTweetId = MentionsList.data[0].id
+
+    #     LastTweetId = 0
+
+    #     # Si on trouve un nouveau tweet non traité
+    #     if NewLastTweetId != LastTweetId:
+    #         TweetToTranslate = MentionsList.includes['tweets'][0].text
+    #         TweetTranslated = translateDeeplAPI.Translate(TweetToTranslate)
+    #         twitterengine.AnswerToTweet(Client, TweetTranslated, NewLastTweetId)
