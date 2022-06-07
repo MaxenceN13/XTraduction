@@ -17,6 +17,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY main.py .
 COPY config.py .
 COPY translateDeeplAPI.py .
-COPY twitterengine.py .
+COPY myStreamingClient.py .
 
 CMD [ "python", "u", "./main.py" ]
