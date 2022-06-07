@@ -19,4 +19,4 @@ COPY config.py .
 COPY translateDeeplAPI.py .
 COPY twitterengine.py .
 
-CMD [ "python", "./main.py" ]
+CMD [ "python", "u", "./main.py" ]
