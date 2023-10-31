@@ -1,5 +1,5 @@
 # Description
-Bot Twitter qui publie les messages traduits, dans la langue de notre choix, d'un compte Twitter.
+Bot Twitter qui publie les messages traduits, dans la langue de notre choix, d'un compte Twitter..
 
 # Installation
 1. Clonez le dépôt
